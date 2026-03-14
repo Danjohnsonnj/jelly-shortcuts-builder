@@ -3,7 +3,7 @@ agent: agent
 description: Scaffold a new Jelly shortcut file in the correct category folder and register it in the shortcuts index.
 ---
 
-You are creating a new Apple Shortcut in this Jellycuts repository. Follow the steps below in order.
+You are creating a new Apple Shortcut in this Jelly Shortcuts repository. Follow the steps below in order.
 
 ## Step 1 — Gather Requirements
 

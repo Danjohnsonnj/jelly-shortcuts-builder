@@ -1,6 +1,6 @@
-# Jellycuts
+# Jelly Shortcuts
 
-A personal Apple Shortcuts library written in [Jelly](https://docs.jellycuts.com/), compiled to `.shortcut` files using the open-source [`jelly` CLI](https://github.com/OpenJelly/Open-Jellycore).
+A personal Apple Shortcuts library written in [Jelly](https://github.com/OpenJelly/Open-Jellycore), compiled to `.shortcut` files using the open-source [`jelly` CLI](https://github.com/OpenJelly/Open-Jellycore).
 
 ---
 
@@ -23,21 +23,26 @@ jelly --help
 
 ## Usage
 
-**Compile a single shortcut:**
+**Compile and sign a single shortcut:**
 
 ```sh
-jelly utilities/flashlight-blink.jelly --export --out ./build/
+~/bin/jelly utilities/flashlight-blink.jelly --export --out build/unsigned/flashlight-blink.shortcut
+shortcuts sign --mode anyone --input build/unsigned/flashlight-blink.shortcut --output build/flashlight-blink.shortcut
 ```
 
-**Compile all shortcuts:**
+**Compile and sign all shortcuts:**
 
 ```sh
-find . -name "*.jelly" -exec jelly {} --export --out ./build/ \;
+find . -name "*.jelly" -not -path "./.git/*" | while read f; do
+  name=$(basename "${f%.jelly}")
+  ~/bin/jelly "$f" --export --out "build/unsigned/$name.shortcut"
+  shortcuts sign --mode anyone --input "build/unsigned/$name.shortcut" --output "build/$name.shortcut"
+done
 ```
 
-Compiled `.shortcut` files are written to `build/` (gitignored). Transfer them to your iPhone via AirDrop or iCloud Drive, then open in the Shortcuts app.
+Signed `.shortcut` files are written to `build/` (gitignored). Transfer them to your iPhone via AirDrop or iCloud Drive, then open in the Shortcuts app. Signing requires an active iCloud login and internet connection.
 
-In VS Code, press `⌘⇧B` to run the **Compile Current File** build task.
+In VS Code, press `⌘⇧B` to run the **Compile & Sign Current File** build task.
 
 ---
 

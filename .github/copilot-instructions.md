@@ -1,4 +1,4 @@
-# Jellycuts Repo — Copilot Instructions
+# Jelly Shortcuts Repo — Copilot Instructions
 
 This repository is a personal Apple Shortcuts library written in **Jelly**, the text-based language compiled by the open-source [jelly CLI](https://github.com/OpenJelly/Open-Jellycore). Every file in this repo is a `.jelly` source file that compiles to an Apple Shortcut.
 
@@ -25,7 +25,7 @@ utilities/       — system tools, calculations, text processing, data lookups
 Every `.jelly` file in this repo must follow these conventions:
 
 1. **First line is always `import Shortcuts`** — no exceptions.
-2. **Metadata is required on every script.** Include `#Color` and `#Icon` at the top (after imports). Refer to the Jellycuts language reference for valid color and icon values.
+2. **Metadata is required on every script.** Include `#Color` and `#Icon` at the top (after imports). Refer to the Jelly language reference for valid color and icon values.
 3. **Early-exit nil check on input.** If a shortcut expects `Shortcut Input`, the second block after metadata must check for nil and call `exit()` if the input is missing:
 
    ```jelly
