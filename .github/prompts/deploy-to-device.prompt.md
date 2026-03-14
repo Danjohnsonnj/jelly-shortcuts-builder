@@ -7,7 +7,7 @@ You are helping the user transfer a compiled shortcut to their iPhone. Follow th
 
 ## Step 1 — Confirm the Build Exists
 
-Check that a `.shortcut` file exists in `build/`. If it does not, tell the user to run `/compile-export` first.
+Check that a signed `.shortcut` file exists in `build/` (not `build/unsigned/`). Files in `build/` have been signed by `shortcuts sign` and are safe to import on any Apple device. If only unsigned files exist in `build/unsigned/`, tell the user to run `/compile-export` to compile and sign first.
 
 ## Step 2 — Scan for Third-Party Library Dependencies
 

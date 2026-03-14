@@ -2,9 +2,9 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Compile Current File",
+			"label": "Compile & Sign Current File",
 			"type": "shell",
-			"command": "jelly ${relativeFile} --export --out ./build/",
+			"command": "mkdir -p build/unsigned && ~/bin/jelly ${relativeFile} --export --out build/unsigned/${fileBasenameNoExtension}.shortcut && shortcuts sign --mode anyone --input build/unsigned/${fileBasenameNoExtension}.shortcut --output build/${fileBasenameNoExtension}.shortcut && echo 'Signed: build/${fileBasenameNoExtension}.shortcut'",
 			"group": {
 				"kind": "build",
 				"isDefault": true
@@ -17,9 +17,9 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Compile All",
+			"label": "Compile & Sign All",
 			"type": "shell",
-			"command": "find . -name '*.jelly' -not -path './.git/*' -exec jelly {} --export --out ./build/ \\;",
+			"command": "mkdir -p build/unsigned && find . -name '*.jelly' -not -path './.git/*' | while read f; do name=$(basename \"${f%.jelly}\"); ~/bin/jelly \"$f\" --export --out \"build/unsigned/$name.shortcut\" && shortcuts sign --mode anyone --input \"build/unsigned/$name.shortcut\" --output \"build/$name.shortcut\" && echo \"Signed: build/$name.shortcut\"; done",
 			"group": "build",
 			"presentation": {
 				"reveal": "always",
