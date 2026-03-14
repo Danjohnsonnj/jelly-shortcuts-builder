@@ -1,0 +1,15 @@
+import Shortcuts
+#Color: yellow
+#Icon: sun
+
+// Flashlight Blink
+// Blinks the iPhone flashlight on and off three times, then vibrates.
+
+repeat(3) {
+    setFlashlight(state: true, level: 1.0)
+    wait(seconds: 1)
+    setFlashlight(state: false, level: 0.0)
+    wait(seconds: 1)
+}
+
+vibrate()

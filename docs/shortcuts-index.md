@@ -10,8 +10,9 @@ This file is the canonical catalog of all Apple Shortcuts in this repository. It
 
 | Name | File | Description | Inputs | Outputs | Libraries |
 |---|---|---|---|---|---|
+| Flashlight Blink | `utilities/flashlight-blink.jelly` | Blinks the iPhone flashlight on and off three times, then vibrates. | none | none | — |
 
-*No shortcuts yet. Use the `/new-shortcut` prompt to add one.*
+
 
 ---
 
