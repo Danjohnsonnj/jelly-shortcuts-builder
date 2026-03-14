@@ -1,6 +1,6 @@
 # Jellycuts Repo — Copilot Instructions
 
-This repository is a personal Apple Shortcuts library written in **Jelly**, the text-based language compiled by the [Jellycuts](https://jellycuts.com) iOS app. Every file in this repo is a `.jelly` source file that compiles to an Apple Shortcut.
+This repository is a personal Apple Shortcuts library written in **Jelly**, the text-based language compiled by the open-source [jelly CLI](https://github.com/OpenJelly/Open-Jellycore). Every file in this repo is a `.jelly` source file that compiles to an Apple Shortcut.
 
 ---
 
@@ -51,6 +51,7 @@ Every `.jelly` file in this repo must follow these conventions:
 | **Jelly Language Reference** | `~/.github/instructions/jelly.instructions.md` (auto-loads on `.jelly` files via `applyTo`) |
 | **Shortcut Catalog**         | `docs/shortcuts-index.md`                                                                   |
 | **Reusable Agent Prompts**   | `.github/prompts/`                                                                          |
+| **Build Setup & CLI Usage**  | `README.md`                                                                                 |
 
 ---
 
@@ -59,5 +60,8 @@ Every `.jelly` file in this repo must follow these conventions:
 - **Before creating a new shortcut**, check `docs/shortcuts-index.md` to confirm the shortcut does not already exist. If a similar one exists, prefer extending it via `runShortcut()` composition rather than duplicating code.
 - **After creating a new shortcut**, append a row to `docs/shortcuts-index.md`. Use the `/new-shortcut` prompt (`.github/prompts/new-shortcut.prompt.md`) for a guided scaffolding workflow that handles this automatically.
 - **When inserting a menu block**, use the `/add-menu` prompt to ensure correct `menu/case` syntax.
-- **When debugging**, use the `/debug-shortcut` prompt to instrument a file with `quicklook()` calls. Always remove them before exporting the final `.shortcut` file.
+- **When debugging**, use the `/debug-shortcut` prompt to instrument a file with `quicklook()` calls. Always remove them before compiling the final export.
+- **To compile and export a shortcut**, use the `/compile-export` prompt — it runs `jelly` in the terminal and surfaces any errors.
+- **To transfer a compiled shortcut to iPhone**, use the `/deploy-to-device` prompt.
+- **To import an existing shortcut from iPhone into this repo**, use the `/import-shortcut` prompt.
 - The Jelly language reference (`jelly.instructions.md`) loads automatically when a `.jelly` file is open. If you need library-specific docs not covered in the reference, fetch them from the URL listed in the "Further Documentation" section of that file.
