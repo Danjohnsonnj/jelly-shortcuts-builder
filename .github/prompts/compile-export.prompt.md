@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: Compile the current Jelly shortcut using the jelly CLI and surface any errors.
 ---
 

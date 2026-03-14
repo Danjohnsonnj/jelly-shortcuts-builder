@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: Instrument a Jelly shortcut with quicklook() calls for debugging, then clean them up before export.
 ---
 

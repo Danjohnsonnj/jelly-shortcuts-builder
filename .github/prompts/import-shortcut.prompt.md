@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: Reconstruct an existing Apple Shortcut from iPhone as a .jelly source file in this repository.
 ---
 

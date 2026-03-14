@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: Diagnose and fix a jelly compiler error in the current shortcut.
 ---
 

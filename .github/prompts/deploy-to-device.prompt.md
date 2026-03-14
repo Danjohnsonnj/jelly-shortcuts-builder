@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: Transfer a compiled .shortcut file from build/ to iPhone.
 ---
 

@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: Scaffold a new Jelly shortcut file in the correct category folder and register it in the shortcuts index.
 ---
 
