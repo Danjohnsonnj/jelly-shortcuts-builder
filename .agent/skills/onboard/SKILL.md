@@ -1,5 +1,5 @@
 ---
-name: onboard-agent
+name: onboard
 description: The required first-run boot sequence for any new AI agent entering this repository.
 ---
 
