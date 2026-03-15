@@ -1,0 +1,13 @@
+import Shortcuts
+#Color: blue
+#Icon: shortcuts
+
+// Shortcut Name
+// Brief description of what this shortcut does.
+
+// If this shortcut takes input, uncomment the nil check below:
+// if(ShortcutInput == nil) {
+//     exit()
+// }
+
+// TODO: implement shortcut logic here

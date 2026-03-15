@@ -69,14 +69,30 @@ See [docs/shortcuts-index.md](docs/shortcuts-index.md) for a full list of shortc
 
 ## Agent Prompts
 
-Reusable Copilot prompts live in `.github/prompts/`:
+Reusable Copilot prompts live in `.github/prompts/`. Each is a thin shim — the full logic lives in `.agent/skills/`.
 
-| Prompt | Purpose |
-|---|---|
-| `/new-shortcut` | Scaffold a new `.jelly` file and register it in the index |
-| `/compile-export` | Compile the current file and surface any errors |
-| `/fix-compiler-error` | Diagnose and fix a `jelly` compiler error |
-| `/deploy-to-device` | Transfer a compiled shortcut to iPhone |
-| `/import-shortcut` | Reconstruct a `.shortcut` file from iPhone as a `.jelly` source file |
-| `/add-menu` | Insert a `menu/case` block with correct syntax |
-| `/debug-shortcut` | Instrument a script with `quicklook()` calls for debugging |
+| Prompt | Skill Source | Purpose |
+|---|---|---|
+| `/new-shortcut` | `.agent/skills/new-shortcut/` | Scaffold a new `.jelly` file and register it in the index |
+| `/compile-export` | `.agent/skills/compile-export/` | Compile and sign the current file |
+| `/fix-compiler-error` | `.agent/skills/fix-compiler-error/` | Diagnose and fix a `jelly` compiler error |
+| `/deploy-to-device` | `.agent/skills/deploy-to-device/` | Transfer a signed shortcut to iPhone |
+| `/import-shortcut` | `.agent/skills/import-shortcut/` | Reconstruct a `.shortcut` from iPhone as a `.jelly` source file |
+| `/add-menu` | `.agent/skills/add-menu/` | Insert a `menu/case` block with correct syntax |
+| `/debug-shortcut` | `.agent/skills/debug-shortcut/` | Instrument a script with `quicklook()` calls for debugging |
+
+---
+
+## Agent Integration
+
+This repository is **agent-agnostic**. Logic is not coupled to any specific IDE.
+
+| Layer | Path | Role |
+|---|---|---|
+| **Global brain** | `AGENTS.md` | Entry point for any agent — architecture map, how-to-act rules |
+| **Source of truth** | `.agent/` | All coding rules and skill workflows live here |
+| **Build tools** | `Makefile` | Executable CLI targets any agent can invoke via terminal |
+| **VS Code / Copilot** | `.github/` | Shim — activates Copilot context, delegates to `.agent/` |
+| **Cursor** | `.cursor/rules/jelly.mdc` | Shim — activates Cursor rules on `.jelly` files, delegates to `.agent/` |
+
+> **For agents:** Read `AGENTS.md` first. Never add logic to shim files.

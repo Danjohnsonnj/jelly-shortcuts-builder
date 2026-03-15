@@ -1,0 +1,27 @@
+---
+description: Jelly language rules and conventions for this Apple Shortcuts repository.
+globs: "**/*.jelly"
+alwaysApply: false
+---
+
+This repository uses the **Jelly** language to write Apple Shortcuts compiled with the open-source [`jelly` CLI](https://github.com/OpenJelly/Open-Jellycore).
+
+## Source of Truth
+
+The complete syntax rules, coding standards, and agent workflow guidelines are in:
+
+**`.agent/rules/jelly-syntax.md`**
+
+Read that file before writing or editing any `.jelly` file in this repository.
+
+## Quick Reference
+
+- `import Shortcuts` must be line 1 — no exceptions
+- `#Color` and `#Icon` metadata required on every script
+- Nil-check `ShortcutInput` immediately after metadata if the shortcut takes input
+- No variables in `case` labels — hardcoded string literals only
+- Use `make deploy FILE=<path>` to compile, sign, and open a shortcut
+
+## Agent Skills
+
+All reusable agent workflows (scaffold, compile, debug, deploy, import) are in `.agent/skills/`. See `AGENTS.md` for the full map.

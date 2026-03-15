@@ -48,20 +48,27 @@ Every `.jelly` file in this repo must follow these conventions:
 
 | Resource                     | Location                                                                                    |
 | ---------------------------- | ------------------------------------------------------------------------------------------- |
+| **Agent Architecture**       | `AGENTS.md` — read this first                                                               |
+| **Jelly Coding Rules**       | `.agent/rules/jelly-syntax.md` — source of truth                                            |
 | **Jelly Language Reference** | `~/.github/instructions/jelly.instructions.md` (auto-loads on `.jelly` files via `applyTo`) |
 | **Shortcut Catalog**         | `docs/shortcuts-index.md`                                                                   |
-| **Reusable Agent Prompts**   | `.github/prompts/`                                                                          |
+| **Agent Skills**             | `.agent/skills/`                                                                            |
+| **Build Tools**              | `Makefile`                                                                                  |
 | **Build Setup & CLI Usage**  | `README.md`                                                                                 |
 
 ---
 
 ## Agent Instructions
 
-- **Before creating a new shortcut**, check `docs/shortcuts-index.md` to confirm the shortcut does not already exist. If a similar one exists, prefer extending it via `runShortcut()` composition rather than duplicating code.
-- **After creating a new shortcut**, append a row to `docs/shortcuts-index.md`. Use the `/new-shortcut` prompt (`.github/prompts/new-shortcut.prompt.md`) for a guided scaffolding workflow that handles this automatically.
-- **When inserting a menu block**, use the `/add-menu` prompt to ensure correct `menu/case` syntax.
-- **When debugging**, use the `/debug-shortcut` prompt to instrument a file with `quicklook()` calls. Always remove them before compiling the final export.
-- **To compile and export a shortcut**, use the `/compile-export` prompt — it runs `jelly` in the terminal and surfaces any errors.
-- **To transfer a compiled shortcut to iPhone**, use the `/deploy-to-device` prompt.
-- **To import an existing shortcut from iPhone into this repo**, use the `/import-shortcut` prompt.
+This repository uses an **agent-agnostic** architecture. All logic lives in `.agent/`. The files in `.github/prompts/` are thin shims that delegate to `.agent/skills/`.
+
+- **Read `AGENTS.md` first** — it maps the full repository architecture and explains how to act.
+- **For coding rules**, read `.agent/rules/jelly-syntax.md`.
+- **Before creating a new shortcut**, check `docs/shortcuts-index.md` for duplicates, then follow `.agent/skills/new-shortcut/SKILL.md`.
+- **After creating a new shortcut**, append a row to `docs/shortcuts-index.md`.
+- **When inserting a menu block**, use `/add-menu` → delegates to `.agent/skills/add-menu/SKILL.md`.
+- **When debugging**, use `/debug-shortcut` → delegates to `.agent/skills/debug-shortcut/SKILL.md`. Remove all `quicklook()` calls before compiling.
+- **To compile and sign**, use `/compile-export` or run `make deploy FILE=<path>`.
+- **To transfer to iPhone**, use `/deploy-to-device`.
+- **To import an existing shortcut from iPhone**, use `/import-shortcut`.
 - The Jelly language reference (`jelly.instructions.md`) loads automatically when a `.jelly` file is open. If you need library-specific docs not covered in the reference, fetch them from the URL listed in the "Further Documentation" section of that file.
