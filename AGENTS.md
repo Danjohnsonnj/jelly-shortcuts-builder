@@ -40,7 +40,8 @@ This repository uses an **agent-agnostic** architecture. Logic lives in one plac
 │       ├── deploy-to-device/    ← Transfer a shortcut to iPhone
 │       ├── import-shortcut/     ← Reconstruct a .shortcut as .jelly
 │       ├── add-menu/            ← Insert a menu/case block
-│       └── debug-shortcut/      ← Instrument with quicklook()
+│       ├── debug-shortcut/      ← Instrument with quicklook()
+│       └── onboard/             ← First-run agent boot sequence
 │
 ├── .github/
 │   ├── copilot-instructions.md  ← Copilot shim → points to .agent/
@@ -106,3 +107,16 @@ IDE-specific files (`.github/prompts/`, `.cursor/rules/`) are **shims** — they
 **Rule:** Never add logic to a shim file. Add it to `.agent/` and have the shim reference it.
 
 If you need to add a new IDE integration, create a shim in the appropriate IDE folder and point it to the relevant `.agent/skills/` or `.agent/rules/` path.
+
+---
+
+## Tooling & Execution (The Makefile)
+
+Do not attempt to write raw `jelly` or `shortcuts` CLI commands from memory. All actionable project commands are standardized in the root `Makefile`.
+
+When asked to perform a task, use your terminal access to run the following:
+
+- **Compile a script:** `make build FILE=<category/script-name.jelly>`
+- **Sign a compiled shortcut:** `make sign FILE=<category/script-name.jelly>`
+- **Compile, sign, and deploy:** `make deploy FILE=<category/script-name.jelly>`
+- **Decompile from iOS:** `make decompile FILE=<file.shortcut>`
